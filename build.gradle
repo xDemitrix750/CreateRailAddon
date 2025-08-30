@@ -1,0 +1,50 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '6.0.+'
+}
+
+group = 'com.example'
+version = '1.0.0'
+archivesBaseName = 'create_rail_addon'
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+    withSourcesJar()
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+    runs {
+        client {
+            workingDirectory project.file('run')
+            mods {
+                create_rail_addon { source sourceSets.main }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            mods {
+                create_rail_addon { source sourceSets.main }
+            }
+        }
+    }
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net' }
+    mavenCentral()
+    // Curse Maven example - users may need to add their own repo for Create depending on versions
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
+    // Create runtime dependency - adjust version if needed (see README)
+    runtimeOnly 'com.simibubi.create:create-1.20.1:6.0.0-83'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

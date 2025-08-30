@@ -1,0 +1,15 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="create_rail_addon"
+version="1.0.0"
+displayName="Create Rail Addon (example)"
+authors="You"
+description='''
+An example Create addon for Forge 1.20.1.
+On chunk load it will place short stretches of Create train tracks ("create:train_track")
+near the chunk center the first time the chunk is loaded.
+This example is minimal and intended as a starting point.
+'''
